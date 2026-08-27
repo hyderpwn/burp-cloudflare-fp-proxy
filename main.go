@@ -72,9 +72,16 @@ var (
 )
 
 func main() {
+	// Where the CA/leaf cert material is stored. Override with FP_DIR; otherwise
+	// default to <user-home>/fpproxy (falls back to the current dir if the home
+	// directory can't be determined).
 	dir := os.Getenv("FP_DIR")
 	if dir == "" {
-		dir = "/home/hyder/fpproxy"
+		home, err := os.UserHomeDir()
+		if err != nil || home == "" {
+			home = "."
+		}
+		dir = filepath.Join(home, "fpproxy")
 	}
 	os.MkdirAll(dir, 0755)
 	if err := loadOrMakeCA(dir); err != nil {

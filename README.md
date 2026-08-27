@@ -1,6 +1,6 @@
 # fpproxy — Cloudflare fingerprint proxy for Burp
 
-Lets Burp Suite reach Cloudflare-protected targets (e.g. wflow.dubaisc.ae) that
+Lets Burp Suite reach Cloudflare-protected targets (e.g. target.example.com) that
 block Burp's default TLS fingerprint. It sits downstream of Burp and re-originates
 every request with a real Chrome TLS (uTLS) + HTTP/2 fingerprint and a matching
 Chrome User-Agent, so Cloudflare sees a genuine browser.
